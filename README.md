@@ -35,4 +35,4 @@
  
 
 <h4>Clone-> Eclipse -> Import Project
-localhost:8080/Team/index.jsp 접속시 페이지 확인 가능합니다.</h4>
+localhost:8080/BTS/banThing/login.1 접속시 페이지 확인 가능합니다.</h4>
