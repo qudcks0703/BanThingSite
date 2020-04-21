@@ -5,7 +5,7 @@
  <li>Development Tool : Eclipse </li>
  <li>Framework : Spring,BootStrap</li>
  <li>Language/Skills : Java,Ajax,Rest Api,Jquery,HTML,CSS,Javascript</li>
- <li>DB : Mybatis,Oracle DB</li>
+ <li>DB : Oracle DB(+MyBatis)</li>
  <li>Configuration management : Git</li>
  </ul>
 
