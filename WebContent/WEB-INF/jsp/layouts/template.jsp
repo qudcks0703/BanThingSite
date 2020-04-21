@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>제목</title>
    	<tiles:insertAttribute name="top"/>
-<link rel="stylesheet" href="<c:url value="/resources/css/template.css?val=1"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/template.css?val=5"/>">
 </head>
 <body>
 

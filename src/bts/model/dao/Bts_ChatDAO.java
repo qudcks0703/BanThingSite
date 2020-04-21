@@ -1,12 +1,9 @@
 package bts.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
-
 import bts.model.vo.Bts_ChatVO;
 
 public class Bts_ChatDAO {
@@ -21,7 +18,7 @@ public class Bts_ChatDAO {
 		sqlSession.insert("chat.createChat", vo);
 	}
 	
-	public List<Bts_ChatVO> getChatInfo(String search, String search2) {
+	public List<Bts_ChatVO> getChatInfo() {
 	      List<Bts_ChatVO> chatList = sqlSession.selectList("chat.getChatInfo");
 	      return chatList;
 	}
@@ -60,11 +57,11 @@ public class Bts_ChatDAO {
 		sqlSession.update("chat.setUsers",map);
 		return 1;
 	}
+	public List<Bts_ChatVO> getChatInfo(String options, String tag) {
 		List<Bts_ChatVO> chatList = null;
-		if (options.equals("�쟾泥�")) { //移댄뀒怨좊━媛� '�쟾泥�'�씪 �븣 : �궎�썙�뱶濡쒕쭔 寃��깋
-			System.out.println(tag);
+		if (options.equals("전체")) { //카테고리가 '전체'일 때 : 키워드로만 검색
 			chatList = sqlSession.selectList("chat.getChatList_1", tag);
-		}else { //移댄뀒怨좊━媛� '�쟾泥�'媛� �븘�땺 �븣 : 移댄뀒怨좊━ 諛� �궎�썙�뱶 寃��깋
+		}else { //카테고리가 '전체'가 아닐 때 : 카테고리 및 키워드 검색
 			Map param = new HashMap();
 			param.put("options", options);
 			param.put("tag", tag);
@@ -84,11 +81,10 @@ public class Bts_ChatDAO {
 		Map map = new HashMap();
 		map.put("nick", nick);
 		map.put("id", id);
-		System.out.println(map);
 		chatList = sqlSession.selectList("chat.inchat", map);
 		return chatList;
 	}
-	// 諛� �젙蹂� �닔�젙
+	// 방 정보 수정
 	public void modifyChat(Bts_ChatVO vo) {
 		sqlSession.update("chat.modifyChat", vo);
 	}

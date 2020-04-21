@@ -10,7 +10,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -41,11 +40,12 @@ public class Logins {
 	            StringBuilder sb = new StringBuilder();
 	            sb.append("grant_type=authorization_code");
 	            sb.append("&client_id=f3009baa4d561e7bb39263c63ba9a21b");
-	            sb.append("&redirect_uri=http://localhost:8080/BTS/banThing/kakaologin");
+	            sb.append("&redirect_uri=http://192.168.0.136:8080/BTS/banThing/kakaologin");
 	            sb.append("&code=" + authorize_code);
 	            bw.write(sb.toString());
 	            bw.flush();
-	            
+				int responseCode = conn.getResponseCode();
+				System.out.println("토큰 얻어오기 상태 코드 : " + responseCode);
 	            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	            String line = "";
 	            String result = "";
@@ -53,7 +53,6 @@ public class Logins {
 	            while ((line = br.readLine()) != null) {
 	                result += line;
 	            }
-	            System.out.println(result);
 	            JsonParser parser = new JsonParser();
 	            JsonElement element = parser.parse(result);
 	            
@@ -85,7 +84,7 @@ public class Logins {
 		        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 		        
 		        int responseCode = conn.getResponseCode();
-		        
+		        System.out.println("유저 정보 얻어오기 상태 코드:"+responseCode);
 		        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		        
 		        String line = "";
@@ -102,7 +101,6 @@ public class Logins {
 		        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 		        String id=element.getAsJsonObject().get("id").getAsString();
 		        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-		        //String email = kakao_account.getAsJsonObject().get("email").getAsString();
 		        
 		        userInfo.put("nickname", nickname);
 		        userInfo.put("id", id);
@@ -125,7 +123,7 @@ public class Logins {
 			 conn.setRequestMethod("POST");
 			 conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 			 int responseCode = conn.getResponseCode();
-			 System.out.println(responseCode+"카카오 로그아웃 성공");
+			 System.out.println("카카오 로그아웃 상태 코드:"+responseCode);
 			 conn.disconnect();
 		 } catch (Exception e) {
 			 e.printStackTrace();
@@ -145,7 +143,7 @@ public class Logins {
 	        conn.setRequestProperty("Authorization", "Bearer " +token);
 	        
 	        int responseCode = conn.getResponseCode();
-	        System.out.println(responseCode+"카톡 연결해제");
+	        System.out.println("카톡 연결해제 상태코드:"+responseCode);
 	        
 	        conn.disconnect();
 		return "index.2";

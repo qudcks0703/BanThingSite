@@ -1,138 +1,208 @@
-	.main1{
-		width:100%;
-		height:100%;
-		position:relative;
-		background-color:#58ACFA;
-	}
-	.container .jumbotron, .container-fluid{
-	    padding-left: 5px;
-	    padding-top:0px;
-	    padding-right:0px;
-	    padding-bottom:0px;
-	}
-	/*  */
-	#userInfo{
-		position: absolute;
-		top:405px;
-		right:5%;
-		width: 200px;
-		height: 150px;
-		background-color: rgba(178, 199, 217, 1);
-	}
-	#roomBtn{
-		position: absolute;
-		top:560px;
-		right:5%;
-		width: 200px;
-		height: 40px;
-		background-color: rgba(178, 199, 217, 1);
-	}
-	#modifyRoom{
-		display:none;
-		left:220px;
-		position: absolute;
-		top:20px;
-		right:5%;
-		width: 300px;
-		height: 500px;
-		background-color: #58ACFA;
-	}
-	#roomInfo{
-		display:none;
-		left:220px;
-		position: absolute;
-		top:20px;
-		right:5%;
-		width: 350px;
-		height: 447px;
-		background-color: #58ACFA;
-	}
-	/*  */
-	.chatLog {
-		position: absolute;
-		background-color: rgba(178, 199, 217, 1);
-		width: 430px;
-		height: 550px;
-		padding-bottom: 30px;
-		overflow: scroll;
-	}
-	
-	#chatInfo {
-		position: absolute;
-		right:10%;
-		width: 200px;
-		height: 400px;
-		background-color: rgba(178, 199, 217, 1);
-	}
-	/* 거래메세지 */
-	.chatDealStart{
-		position: absolute;
-		bottom:10%;
-		width: 630px;
-		height: 135px;
-		background-color: rgba(178, 199, 217, 1);
-	}
-	.chatDealStart a {
-		color:blue;
-	}
-	
-	/* 채팅 기능  */
-	.chatfunction {
-		position: absolute;
-		right:10%;
-		bottom:27%;
-		width: 200px;
-		height: 186px;
-		background-color: rgba(178, 199, 217, 1);
-	}
-	
-	#chatSub {
-		position: absolute;
-		bottom:27%;
-	}
-	
-	.chatLog > p {
-		display: inline-block;
-		padding: 8px;
-		margin: 6px;
-		background-color: rgba(255,255,255,1);
-		border-radius: 8px;
-		float: left;
-		clear: both;
-		font-size: 13px;
-	}
+*::-webkit-scrollbar {
+    width: 15px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #666c90;
+    border-radius: 9px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+.main1 {
+	width: 100%;
+	height: 100%;
+	background-color: #e5e7f0;
+}
 
-	
-	.chatLog > p.myMessage {
-		background-color: rgba(255,235,51,1);
-		float: right;
-		clear: both;
-	}
-	
-	.chatBox {
-		width:100%;
-		height:100%;
-		position:absolute;
-		background-color: rgba(255,255,255,0.8);
-	}
-	
-	.name {
-		border: none;
-		height: 30px;
-		width: 50px;
-		background: #ddd;
-	}
-	
-	.message {
-		border: none;
-		height: 30px;
-		width: 263px;
-	}
-	
-	.chat-button {
-		border: none;
-		height: 30px;
-		width: 50px;
-		background: #ddd;
-	}
+.container .jumbotron, .container-fluid {
+	padding-left: 5px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	font-size: 15px;
+}
 
+.subject {
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 30px;
+	color: white;
+	background-color: #666c90;
+}
+
+.chatBox {
+	position: relative;
+	height: 750px;
+	width: 80%;
+	min-width: 572.250px;
+	max-width: 700px;
+	margin: 0 auto;
+	background-color: #e5e7f0;
+	font-size: 15px;
+}
+
+/*채팇창*/
+.chatLog {
+	position: relative;
+	width: 74%;
+	height: 600px;
+	left: 1px;
+	top: 103px;
+	background-color: #b2b7d2;
+	overflow: auto;
+}
+/*글쓰기*/
+#chatSub {
+	position: absolute;
+	width: 75%;
+	height: 50px;
+	left: 1px;
+	top: 703px;
+}
+/*콘솔창*/
+.chatDealStart {
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	top: 0;
+	background-color: #b2b7d2;
+	padding-left: 7px;
+	overflow: auto;
+	word-break: break-all;
+}
+/*유저정보*/
+#userInfo {
+	position: absolute;
+	width: 24%;
+	height: 200px;
+	top: 170px;
+	right: 1px;
+	background-color: #c1c3c5;
+	border-radius: 15px;
+	padding-top: 10px;
+	padding-left: 13px;
+}
+
+/*거래상태*/
+.chatfunction {
+	position: absolute;
+	width: 24%;
+	top: 400px;
+	right: 1px;
+	text-align: center;
+	background-color: #c1c3c5;
+	border-radius: 15px;
+}
+.chatfunction p{
+	font-size: 15px;
+}
+
+.chatDealStart a {
+	color: blue;
+}
+
+#roomBtn {
+	position: absolute;
+	text-align: center;
+	bottom: 110px;
+	right: 4.7%;
+}
+
+#dealBtn {
+	position: absolute;
+	text-align: center;
+	bottom: 165px;
+	right: 4.7%;
+}
+
+.dealBtn {
+	font-size: 20px;
+	background-color: #666c90;
+	color: white;
+	border-style: hidden;
+	border-radius: 5px;
+}
+
+.exit-button {
+	position: absolute;
+	bottom: 66px;
+	right: 8%;
+	font-size: 20px;
+	border-style: hidden;
+	border-radius: 5px;
+	background-color: #666c90;
+	color: white;
+}
+/* 방 수정폼 */
+#modifyRoom {
+	display: none;
+	left: 220px;
+	position: absolute;
+	top: 20px;
+	right: 5%;
+	width: 300px;
+	height: 500px;
+	background-color: #58ACFA;
+}
+
+/* 방정보 보기 */
+#roomInfo {
+	/* font-family: 'Do Hyeon', sans-serif; */
+	overflow: auto;
+	display: none;
+	background-color: #666c90;
+	height: 80%;
+	width: 70%;
+	max-width: 430px;
+	position: absolute;
+	z-index: 10;
+	top: 10%;
+	right: 13%;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+}
+
+/* 거래메세지 */
+/* 채팅 기능  */
+.chatLog>p {
+	display: inline-block;
+	padding: 8px;
+	margin: 6px;
+	background-color: rgba(255, 255, 255, 1);
+	border-radius: 8px;
+	float: left;
+	clear: both;
+	font-size: 13px;
+}
+
+.chatLog>p.myMessage {
+	background-color: #b1f3a2;
+	float: right;
+	clear: both;
+}
+
+.name {
+	border: none;
+	height: 40px;
+	width: 18%;
+	background: #ddd;
+}
+
+.message {
+	border: none;
+	height: 40px;
+	width: 65%;
+}
+
+.chat-button {
+	border: none;
+	height: 40px;
+	width: 13%;
+	background: #ddd;
+}

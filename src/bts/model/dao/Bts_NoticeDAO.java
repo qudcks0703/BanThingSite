@@ -1,10 +1,6 @@
 package bts.model.dao;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
-
 import bts.model.vo.Bts_NoticeVO;
 
 public class Bts_NoticeDAO {

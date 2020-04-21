@@ -1,13 +1,8 @@
 package bts.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
-
-import bts.model.vo.Bts_ChatVO;
 import bts.model.vo.Bts_DealVO;
 
 public class Bts_DealDAO {
@@ -31,7 +26,6 @@ public class Bts_DealDAO {
 		Map map=new HashMap();
 		map.put("num", num);
 		map.put("nick", nick);
-		System.out.println(map);
 		return sqlSession.update("deal.dealStartUpdate",map); 
 	}
 	public int dealMoneyUpdate(int num,String nick) {
@@ -39,7 +33,6 @@ public class Bts_DealDAO {
 		Map map=new HashMap();
 		map.put("num", num);
 		map.put("nick", nick);
-		System.out.println(map);
 		return sqlSession.update("deal.dealMoneyUpdate",map); 
 	}
 	public int setDealState(String state,int num) {

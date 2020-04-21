@@ -5,8 +5,7 @@
 
 <div id="index">
 	<div class="name">
-		<h1 class="bts">반띵</h1>
-		<img width="200" height="200" src="<c:url value="/resources/img/logo.jpg"/>">
+		<img width="480" height="160" src="<c:url value="/resources/img/logo.jpg"/>"></h1>
 	</div>
 	<div class="login">
 		<form id="login" action="login.1" method="post">
@@ -18,15 +17,28 @@
 				<button type="button" class="btn btn-warning" onclick="kakao()">
 					카카오톡 로그인
 				</button><br/>
-				<button type="button" onclick="window.location.href='signup.1'" class="btn btn-info">
+				<button type="button" onclick="window.location.href='signup.1'" class="btn btn-danger">
 					일반 회원가입
 				</button><br/>
+				<button type="button" onclick="unMember()" class="btn btn-primary">
+					비회원 로그인
+				</button>
 			</div>
 		</form>
 	</div>
 </div>
-
-
+<script>
+	function unMember(){
+		var check=confirm("비회원으로 로그인시 일부 기능들을 사용하실 수 없는데 괜찮방구?");
+		if(check){
+			alert("뿡");
+			window.location.href='map-setting.1';
+		}else{
+			alert("회원가입을 해서 모든 기능을 이용하세요!");
+			return false;
+		}
+	}
+</script>
 <c:if test="${ signup eq 'success' }">
 	<script>
 		alert('회원가입이 완료되었습니다.');
@@ -46,7 +58,7 @@
 <c:if test="${sessionId!=null}">
 	<script>
 		alert('현재 로그인 중 입니다.');
-		history.go(-1);
+		window.location.href="map-setting.1";
 	</script>
 </c:if>
 <script>

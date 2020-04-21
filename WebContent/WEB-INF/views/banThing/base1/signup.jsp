@@ -5,8 +5,7 @@
 
 <div id="index">
 	<div class="name">
-		<h1 class="bts">반띵</h1>
-		<img width="150" height="150" src="<c:url value="/resources/img/logo.jpg"/>">
+		<img width="480" style="margin-top:30px;" height="160" src="<c:url value="/resources/img/logo.jpg"/>"></h1>
 	</div>
 	<div class="signup-setting">
 	<!-- //onsubmit="return check()" -->

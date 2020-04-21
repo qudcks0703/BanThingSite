@@ -26,6 +26,18 @@
 		margin-bottom:5px;
 		width:400px;
 	}
+	.container,.jumbotron{
+		min-width:0px;
+	}
+	.container,.jumbotron{
+		height: 512px;
+	}
+	#nav{
+		height: 0px;
+	}
+	#section{
+		left:8%;
+	}
 @media (min-width: 768px) {
    #index{
    	margin-left:-35%;

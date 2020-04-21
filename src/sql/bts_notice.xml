@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="notice">
-  		<select id="chNotice" resultType="noticeVO">
-  			select * from Bts_Notice
-  		</select>
+<mapper namespace="notice">
+        <select id="chNotice" resultType="noticeVO">
+           select * from bts_notice order by num desc
+        </select>
   
-  		<insert id="insertNotice" parameterType="noticeVO">
-  			insert into Bts_Notice values(Bts_Notice_seq.nextVal,#{title},#{content},sysdate)
-  		</insert>
+        <insert id="insertNotice" parameterType="noticeVO">
+           insert into Bts_Notice values(Bts_Notice_seq.nextVal,#{title},#{content},sysdate)
+        </insert>
   </mapper>

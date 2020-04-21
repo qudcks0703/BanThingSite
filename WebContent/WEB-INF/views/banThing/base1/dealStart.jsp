@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<c:url value="/resources/css/base1/dealStart.css"/>">
 <!DOCTYPE html>
+<style>
+
+</style>
 <div id="index">
 	<div class="name">
 		<h1 class="bts">반띵</h1>
@@ -23,6 +26,7 @@
 </div>
 
 <script>
+	//동의 버튼클릭시 submit 실행과 동시에 페이지 닫힘
 	$("#go").click(function(){
 		$("#a").attr("action","#");
 		self.close();

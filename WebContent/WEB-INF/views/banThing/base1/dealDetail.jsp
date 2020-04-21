@@ -28,6 +28,7 @@
 </div>
 
 <script>
+	//동의 버튼 클릭시 form태그 submit 실행과 동시에 페이지 닫힘
 	$("#go").click(function(){
 		$("#a").attr("action","#");
 		self.close();

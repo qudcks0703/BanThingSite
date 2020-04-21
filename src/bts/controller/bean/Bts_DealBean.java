@@ -1,50 +1,18 @@
 package bts.controller.bean;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpClientErrorException;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import bts.basic.function.Alram;
+import bts.basic.function.DealMethd;
 import bts.model.dao.Bts_ChatDAO;
 import bts.model.dao.Bts_DealDAO;
 import bts.model.vo.Bts_ChatVO;
@@ -59,8 +27,9 @@ public class Bts_DealBean {
 	Bts_ChatDAO chatDAO=null;
 	@Autowired
 	Bts_DealDAO dealDAO=null;
+	@Autowired
+	DealMethd alram=null;
 	
-	Alram alram=new Alram();
 	HttpServletRequest request=null;
 	HttpServletResponse response=null;
 	HttpSession session=null;
@@ -89,9 +58,7 @@ public class Bts_DealBean {
 		}
 		//포스트 접근시 거래전 ->거래후 최병찬,->최병찬0, 으로 변경
 		else {
-			System.out.println("값 성공");
-			//거래 중으로 상태변경
-			
+			System.out.println("거래 전->동의 중으로 변경");
 			//chat vo가져오기
 			Bts_ChatVO vo=chatDAO.getUniqueChatInfo(Dealvo.getNum());
 			
@@ -122,12 +89,14 @@ public class Bts_DealBean {
 			String nick=(String)session.getAttribute("sessionNick");
 			//0붙여서 현재 돈안 넣은 상태인 것 알려주기.
 			dealDAO.dealStartUpdate(num,nick);
+			System.out.println(nick+"동의 함.");
 		}
 		
 		return uri.split("/")[3];
 	}
 	@RequestMapping("kakaoPay")
 	public String kakaoPay(String product,String price,int num,int userCount) {
+		System.out.println(nick+"님께서 카카오 페이 실행중.");
 		Map map=alram.kakaoPay(product,price,userCount);
 		tid=(String)map.get("tid");
 		this.num=num;
@@ -138,8 +107,8 @@ public class Bts_DealBean {
 	
 	@RequestMapping("PaySuccess")
 	public void PaySuccess(String pg_token) throws IOException {
+		System.out.println(nick+"님 카카오페이 입금 성공!");
 		alram.paySuccess(pg_token, tid);
-		
 		dealDAO.dealMoneyUpdate(num, nick);
 		PrintWriter io=response.getWriter(); io.print("<script>");	
 		io.print("self.close();"); 
@@ -147,10 +116,11 @@ public class Bts_DealBean {
 		 
 	}
 	@RequestMapping("setDealState")
+	@ResponseBody
 	public String setDealState(String state,int num) {
-		System.out.println("현재 거래상태는?"+state);
+		System.out.println(num+"번 테이블"+state+"로 거래 상태 변경");
 		dealDAO.setDealState(state,num);
-		return uri.split("/")[3];
+		return "Update success";
 	}
 	
 	

@@ -1,36 +1,14 @@
 package bts.controller.bean;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Map;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import bts.basic.function.Logins;
 import bts.model.dao.Bts_MemberDAO;
 import bts.model.vo.Bts_MemberVO;
@@ -99,7 +77,7 @@ public class Bts_MemberBean {
 			session.setAttribute("sessionId", id);
 			session.setAttribute("sessionNick", nick);
 			model.addAttribute("check", check);
-			System.out.println("'"+id+"'"+"님이 로그인하셨습니다.");
+			System.out.println(id+"("+nick+")"+"님이 로그인하셨습니다.");
 			return "map-setting.1";
 		}else {
 		//3. 없으면 회원가입
@@ -125,7 +103,7 @@ public class Bts_MemberBean {
 				session.setAttribute("sessionId", vo.getId());
 				session.setAttribute("sessionNick", nick);
 				model.addAttribute("check", check);
-				System.out.println("'"+vo.getId()+"'"+"님이 로그인하셨습니다.");
+				System.out.println(vo.getId()+"("+nick+")"+"님이 로그인하셨습니다.");
 				return "map-setting.1";
 			}else {
 				model.addAttribute("check", "err");
@@ -156,12 +134,22 @@ public class Bts_MemberBean {
 		model.addAttribute("user", vo);
 		return "userProfile.1";
 	}
+	@RequestMapping("delete")
+	public void delete() throws Exception {
+		String id=(String)session.getAttribute("sessionId");
+		memberDAO.deleteMember(id);
+		response.sendRedirect("logout");
+	}
+	
 	@RequestMapping("logout")
 	public String logout() throws Exception {
 		String token=(String)session.getAttribute("kakaotoken");
+		String id=(String)session.getAttribute("sessionId");
+		String nick=(String)session.getAttribute("sessionNick");
 		if(token!=null) {
 			login.kakaoLogout(token);
 		}
+		System.out.println(id+"("+nick+")"+"님께서 로그아웃 하셨습니다.");
 		session.invalidate();
 		model.addAttribute("logout","success");
 		return "login.1";

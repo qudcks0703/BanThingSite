@@ -1,9 +1,6 @@
 package bts.model.dao;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
-
 import bts.model.vo.Bts_MemberVO;
 
 //sql.xml 호출하는 곳

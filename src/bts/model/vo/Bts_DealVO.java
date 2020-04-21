@@ -1,7 +1,5 @@
 package bts.model.vo;
 
-import java.sql.Timestamp;
-
 public class Bts_DealVO {
 	
 	private int num;

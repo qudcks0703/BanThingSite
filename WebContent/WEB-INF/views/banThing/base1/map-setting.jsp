@@ -6,11 +6,10 @@
 <div id="index">
 <!--  -->
 	<div class="name">
-		<h1 class="bts">반띵</h1>
-		<img width="200" height="200" src="<c:url value="/resources/img/logo.jpg"/>">
+		<img width="480" height="160" src="<c:url value="/resources/img/logo.jpg"/>"></h1>
 	</div>
 	<div class="map-name">
-		<h1>맵 필터 설정</h1>
+		<h1 style="margin-top: 30px;padding-bottom: 30px;">맵 필터 설정</h1>
 	</div>
 	<div class="map-setting">
 		<div><br/>

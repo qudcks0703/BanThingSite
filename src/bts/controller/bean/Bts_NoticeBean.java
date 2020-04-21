@@ -3,15 +3,10 @@ package bts.controller.bean;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import bts.model.dao.Bts_NoticeDAO;
 import bts.model.vo.Bts_NoticeVO;
 
@@ -23,11 +18,14 @@ public class Bts_NoticeBean {
 	Bts_NoticeDAO noticeDAO;
 	
 	@RequestMapping("notice")
-	public String notice(Bts_NoticeVO vo) {
-		System.out.println("접속");
+	@ResponseBody
+	public String notice(String title,String content) {
+		Bts_NoticeVO vo = new Bts_NoticeVO();
+		vo.setTitle(title);
+		vo.setContent(content);
 		noticeDAO.insertNotice(vo);
-		
-		return "index.2";
+		System.out.println("insert 성공");
+		return "insert Notice Save";
 	}
 
 	@RequestMapping(value = "chnotice", headers="Accept=*/*",  produces="application/json")

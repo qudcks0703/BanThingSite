@@ -9,6 +9,7 @@
 </head>
 <body>
 <script>
+	//kakaoPay 컨트롤러에서 받은 url로 바로 이동
 	window.location.href="${url}";
 </script>
 </body>

@@ -25,7 +25,7 @@
 	 <bean id="chatDAO" class="bts.model.dao.Bts_ChatDAO">
       <property name="sqlSession" ref="sqlSession"/>
     </bean>    
-	 <bean id="NoticeDAO" class="bts.model.dao.Bts_NoticeDAO">
+	 <bean id="noticeDAO" class="bts.model.dao.Bts_NoticeDAO">
       <property name="sqlSession" ref="sqlSession"/>
     </bean>    
 
